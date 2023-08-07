@@ -17,16 +17,13 @@ public class JsonKafkaProducer {
      private KafkaTemplate<String, Users> kafkaTemplate;
 
      public JsonKafkaProducer(KafkaTemplate<String, Users> kafkaTemplate) {
-         this.kafkaTemplate = this.kafkaTemplate;
-
+         this.kafkaTemplate = kafkaTemplate;
      }
 
      public void sendMessage(Users data) {
 
          LOGGER.info(String.format("Message sent -> %s", data.toString()));
-
-         Message<Users> message = MessageBuilder.withPayload(data).setHeader(KafkaHeaders.TOPIC, "ak").build();
-
+         Message<Users> message = MessageBuilder.withPayload(data).setHeader(KafkaHeaders.TOPIC, "ak_json").build();
          kafkaTemplate.send(message);
      }
 
